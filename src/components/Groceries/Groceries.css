@@ -1,0 +1,49 @@
+.arrow-right {
+    margin-left: 10px;
+    height: 20px;
+    width: 20px;
+    margin-top: 0px;
+    padding-top: 5px;
+}
+
+.pay-now-button-container {
+    padding-top: 0px;
+}
+
+.pay-now-button {
+    font-size: 20px;
+    height: 20px;
+    padding-bottom: 3px;
+    border-radius: 2rem;
+    box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.7);
+    background-color: goldenrod;
+    margin-top: 50px;
+    margin-left: 247px;
+}
+
+.table-button-group {
+    padding: 350px 10px;
+    height: 200px;
+    width: 100px;
+}
+
+.groceries-table {
+    display: block;
+    background-color: darkseagreen;
+    height: 230px;
+    overflow-y: auto;
+    border: 1px solid white;
+    box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.7);
+    border-radius: 2rem;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 60px;
+    margin-right: 100px;
+    width: 400px;
+}
+
+.sub-total {
+    background-color: black;
+    position: relative;
+    bottom: 10px;
+}

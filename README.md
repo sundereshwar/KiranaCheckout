@@ -1,22 +1,51 @@
-# KiranaCheckout
+# Getting Started...
 
-“When the world is moving faster than ever, why should the process of creating /updating your application environment be slow and manual?”
+1. Clone the repository `git clone https://github.com/FarrandTom/self-checkout.git`
 
-Edge' is a technology buzzword trending for being a frontier technology. Cloud technology and services have been extensively used by large percentage of consumers, however most of the new upcoming opportunities lie at the 'Edge'. With Edge Computing, data is not sent to the Cloud but acted on at the source, creating real-time insights. The likes of 5G, Autonomous vehicles, Smart City, etc have Edge computing as the de-facto technology. The parasol of Edge computing involves concerted use of Artificial Intelligence, Machine Learning, Internet of Things, Service Operations and Blockchain. Edge Computing drives the foundational grounds for various domain requirements and imperative elements of technology.
+2. Create an appropriate virtual environment, using `backend_tf/environment.yml`. This can be achieved by running the command: `conda create --name self_checkout --file environment.yml`
+You will then need to pip install two packages within that environment. Therefore, after you activate the environment (e.g. `conda activate self_checkout`) run: 
+`pip install flask_cors` (This package is not on a conda channel)
+`pip install imageio` (This installs pillow with the module for webpack images- which the conda install does not)
 
-In Kirana Stores, the traditional system of buying items is manual and very slow indeed. In order to make it faster and more efficient. We devise a system that allows automatic detection of product using camera. For example, if a toothpaste is placed in front of the camera, it detects the product and details of each product scanned is then presented at the bill of materials for payment.
+3. To start the backend, which serves the object detection model, change into the `backend_tf/` folder, and then run `python app.py`.
 
-Our System is not compute intensive and the scanning is done in real time without sending the data to cloud for processing as some of these stores can be in remote areas with intermittent connectivity and we do not want the customers to wait due to latency issues for connectivity.
+4. To run the application front end `npm start`
 
-The application can detect, count, appropriately price oranges, apples, and bananas and finally add them to a shopping list. The idea is simple, we train a model using the TensorFlow Object Detection API and build a web application using Flask and ReactJS.
+5. You should then be able to capture images of bananas, apples, and oranges which will register in the price UI. The initial inference usually takes longer than subsequent images, so bear that in mind.
 
-To be more specific, we trained a model and fed it with a small labelled image dataset of some items which are seen commonly seen in Kirana stores that we created then trained it. 
+## Docker Build Instructions
+Follow the instructions below to build this docker container and run the app. Please have a look at the [Docker documentation](https://docs.docker.com/) for further details.
 
-Secondly, we developed an inference application using Flask (backend) and ReactJS (frontend). Basically, the ReactJS app uses the system’s camera to capture an image and send it via API to the Flask backend, where the model is hosted. After the prediction is made it returns the results to the frontend, to print it on the User Interface.
+1. Clone the repository
 
-These are the basic steps that were followed:
-    1. Data preparation.
-    2. Train a model using transfer learning.
-    3. Build the app backend using Flask microframework.
-    4. Build the app frontend (UI) using ReactJS.
-    5. Containerize the app using Docker.
+
+#### `git clone https://github.com/FarrandTom/self-checkout.git`
+
+2. Navigate to the code repository
+
+
+#### `cd self-checkout`
+
+
+3. Build the docker container
+
+
+#### `docker build -t selfcheckout:1.0 .`
+
+
+4. Run the container. 
+Note: We run the container in detached mode because when the front-end starts alongiside the container. We need to execute a second command to run the backend.
+
+
+#### `docker run -d --name selfcheckout -p 3000:3000 -p 5000:5000 selfcheckout:1.0`
+
+
+5. Run this command to start the backend server
+
+
+#### `docker exec -it selfcheckout python3 /usr/src/app/backend_tf/app.py`
+
+6. Open your browser and use this url
+
+
+#### `http://localhost:3000`
